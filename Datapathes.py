@@ -1,0 +1,5 @@
+botoverview_path = 'C:/Users/Texnosblch/Documents/Ski_Liberty_telegram_bot/Data/aboutbot/botoverview.txt'
+botfunctions_path = 'C:/Users/Texnosblch/Documents/Ski_Liberty_telegram_bot/Data/aboutbot/functionsoverview.txt'
+about_age_path = 'C:/Users/Texnosblch/Documents/Ski_Liberty_telegram_bot/Data/aboutus/about_age'
+Where_are_we_path = 'C:/Users/Texnosblch/Documents/Ski_Liberty_telegram_bot/Data/aboutus/Where_are_we'
+Who_are_we_path = 'C:/Users/Texnosblch/Documents/Ski_Liberty_telegram_bot/Data/aboutus/Who_are_we'
