@@ -8,7 +8,7 @@ from functions.vk_parcer_schedule import schedule
 
 async def start(message: types.Message):
     try:
-        await message.answer('Привет!\nЯ тестовый бот, который пока что находится в разработке, скоро будет добавлено значительно больше функционала', reply_markup=keyboard.mainmenu)
+        await message.answer(inforeader(Datapathes.welcome_message), reply_markup=keyboard.mainmenu)
     except Exception as e:
         print(e)
 
@@ -50,10 +50,10 @@ async def inline__keyboard_handler(call: types.CallbackQuery):
                 await call.message.answer(inforeader(Datapathes.botfunctions_path))
                 await bot.answer_callback_query(callback_query_id=call.id)
             case 'contactscall':
-                await call.message.bot.send_contact(call.message.chat.id, '+79111630993', 'Валерия', 'Павловская')
+                await call.message.bot.send_contact(call.message.chat.id, '+79111630993', 'Павловская', 'Валерия')
                 await bot.answer_callback_query(callback_query_id=call.id)
             case 'contactsemail':
-                await call.message.answer('Скоро тут будет почта')
+                await call.message.answer('info@skiliberty.ru')
                 await bot.answer_callback_query(callback_query_id=call.id)
     except Exception as e:
         print(e)

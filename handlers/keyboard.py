@@ -23,7 +23,7 @@ aboutus = ReplyKeyboardMarkup(resize_keyboard=True)\
     .row(aboutus_about_age)\
     .row(aboutus_go_back)
 
-#Клавиатура раздела ""
+#Клавиатуры раздела "Список вещей на сборы"
 camp_summer = KeyboardButton('Летний сбор')
 camp_winter = KeyboardButton('Зимний сбор')
 camp_spring = KeyboardButton('Весенний сбор')
