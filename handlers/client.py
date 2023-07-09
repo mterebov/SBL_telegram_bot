@@ -43,24 +43,17 @@ async def keyboard_handler(message: types.Message):
         print(e)
 
 
-async def inline_contacts_keyboard_handler(call: types.CallbackQuery):
-    try:
-        match call.data:
-            case 'contactscall':
-                await call.message.answer(bot.send_contact(call.message.chat.id, '+79111630993', 'Валерия', 'Павловская'))
-                await bot.answer_callback_query(callback_query_id=call.id)
-            case 'contactsemail':
-                await call.message.answer('Почта работает')
-                await bot.answer_callback_query(callback_query_id=call.id)
-    except Exception as e:
-        print(e)
-
-
-async def inline_help_keyboard_handler(call: types.CallbackQuery):
+async def inline__keyboard_handler(call: types.CallbackQuery):
     try:
         match call.data:
             case 'helpfunctions':
                 await call.message.answer(inforeader(Datapathes.botfunctions_path))
+                await bot.answer_callback_query(callback_query_id=call.id)
+            case 'contactscall':
+                await call.message.bot.send_contact(call.message.chat.id, '+79111630993', 'Валерия', 'Павловская')
+                await bot.answer_callback_query(callback_query_id=call.id)
+            case 'contactsemail':
+                await call.message.answer('Скоро тут будет почта')
                 await bot.answer_callback_query(callback_query_id=call.id)
     except Exception as e:
         print(e)
@@ -69,6 +62,4 @@ async def inline_help_keyboard_handler(call: types.CallbackQuery):
 def register_client():
     dp.register_message_handler(start, commands=['start'])
     dp.register_message_handler(keyboard_handler, state=None)
-    dp.register_message_handler(inline_contacts_keyboard_handler)
-    dp.register_callback_query_handler(inline_help_keyboard_handler)
-    dp.register_callback_query_handler(inline_contacts_keyboard_handler)
+    dp.register_callback_query_handler(inline__keyboard_handler)
