@@ -17,7 +17,7 @@ async def keyboard_handler(message: types.Message):
     try:
         match message.text:
             case 'Помощь':
-                await message.answer(inforeader(Datapathes.botoverview_path), reply_markup=keyboard.help_contacts)
+                await message.answer(inforeader(Datapathes.botoverview_path), reply_markup=keyboard.help_inline_keyboard)
             case 'О нас':
                 await message.answer('что вас интересует?', reply_markup=keyboard.aboutus)
             case 'Расписание':
@@ -37,22 +37,38 @@ async def keyboard_handler(message: types.Message):
                 await message.answer('Еще в разработке :(')
             case 'Контакты':
                 await message.answer('Способы связи с нами:', reply_markup=keyboard.contacts)
-            case 'Доступные функции':
-                await message.answer(inforeader(Datapathes.botfunctions_path))
             case _:
                 await message.reply('Нет такой комманды!')
     except Exception as e:
         print(e)
 
 
-async def inline_keyboard_handler(call: types.CallbackQuery):
-    match call.data:
-        case 'contactscall':
-            await call.message.answer('Работает')
-            '''await bot.send_contact(call.message.chat.id, '+79111630993', 'Валерия', 'Павловская')'''
-            await bot.answer_callback_query(callback_query_id=call.id)
+async def inline_contacts_keyboard_handler(call: types.CallbackQuery):
+    try:
+        match call.data:
+            case 'contactscall':
+                await call.message.answer(bot.send_contact(call.message.chat.id, '+79111630993', 'Валерия', 'Павловская'))
+                await bot.answer_callback_query(callback_query_id=call.id)
+            case 'contactsemail':
+                await call.message.answer('Почта работает')
+                await bot.answer_callback_query(callback_query_id=call.id)
+    except Exception as e:
+        print(e)
+
+
+async def inline_help_keyboard_handler(call: types.CallbackQuery):
+    try:
+        match call.data:
+            case 'helpfunctions':
+                await call.message.answer(inforeader(Datapathes.botfunctions_path))
+                await bot.answer_callback_query(callback_query_id=call.id)
+    except Exception as e:
+        print(e)
+
 
 def register_client():
     dp.register_message_handler(start, commands=['start'])
     dp.register_message_handler(keyboard_handler, state=None)
-    dp.register_message_handler(inline_keyboard_handler)
+    dp.register_message_handler(inline_contacts_keyboard_handler)
+    dp.register_callback_query_handler(inline_help_keyboard_handler)
+    dp.register_callback_query_handler(inline_contacts_keyboard_handler)

@@ -23,11 +23,6 @@ aboutus = ReplyKeyboardMarkup(resize_keyboard=True)\
     .row(aboutus_about_age)\
     .row(aboutus_go_back)
 
-#Клавиатуры разделов "Помощь", "Контакты"
-go_back = KeyboardButton('Назад')
-help_contacts = ReplyKeyboardMarkup(resize_keyboard=True)\
-    .row(go_back)
-
 #Клавиатура раздела ""
 camp_summer = KeyboardButton('Летний сбор')
 camp_winter = KeyboardButton('Зимний сбор')
@@ -39,11 +34,20 @@ camp = ReplyKeyboardMarkup(resize_keyboard=True)\
 
 #Инлайн клавиатура раздела "Контакты"
 contacts = InlineKeyboardMarkup(row_width=1)
-contacts_vk = InlineKeyboardButton(text='Группа в вк', url='https://vk.com/club20011640')
-contacts_inst = InlineKeyboardButton(text='Инстаграмм', url='https://instagram.com/ski.board.liberty')
-contacts_call = InlineKeyboardButton(text='Позвонить Павловской Валерии', callback_data='contactscall')
-contacts_email = InlineKeyboardButton(text='Электронная почта', url='info@skiliberty.ru')
+contacts_vk = InlineKeyboardButton(text='Наша группа в вк', url='https://vk.com/club20011640')
+contacts_inst = InlineKeyboardButton(text='Наш инстаграмм', url='https://instagram.com/ski.board.liberty')
+contacts_call = InlineKeyboardButton(text='Позвонить нам', callback_data='contactscall')
+contacts_email = InlineKeyboardButton(text='Наша электронная почта', callback_data='contactsemail')
+contacts_site = InlineKeyboardButton(text='Наш сайт', url='http://ski-board-liberty.tilda.ws/')
 contacts.insert(contacts_call)
 contacts.insert(contacts_email)
+contacts.insert(contacts_site)
 contacts.insert(contacts_vk)
 contacts.insert(contacts_inst)
+
+#Клавиатура раздела "Помощь"
+help_inline_keyboard = InlineKeyboardMarkup(row_width=1)
+help_github = InlineKeyboardButton(text='Код проекта на GIT', url='https://github.com/mterebov/SBL_telegram_bot/tree/main')
+help_functions = InlineKeyboardButton(text='Доступные функции', callback_data='helpfunctions')
+help_inline_keyboard.insert(help_functions)
+help_inline_keyboard.insert(help_github)
